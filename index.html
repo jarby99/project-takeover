@@ -248,26 +248,40 @@
       text-wrap: pretty;
     }
 
-    .stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .stack-lead {
+      margin: 0 0 18px;
+      max-width: 42em;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .stack-list {
       list-style: none;
       margin: 0;
       padding: 0;
+      border-top: 1px solid var(--ink);
     }
 
-    .stack li {
-      min-width: 92px;
-      padding: 12px 14px;
-      background: var(--paper-2);
-      font-family: Consolas, "Cascadia Mono", monospace;
+    .stack-list li {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 8px 28px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stack-list .tech { font-size: 15.5px; }
+
+    .stack-list p {
+      margin: 0;
+      color: var(--muted);
       font-size: 15px;
-      text-align: center;
     }
 
     .fine {
       margin: 14px 0 0;
+      max-width: 46em;
       color: var(--muted);
       font-size: 15px;
     }
@@ -325,7 +339,8 @@
         padding: 16px 0;
         border-left: 0;
       }
-      .rows li { grid-template-columns: 1fr; gap: 4px; }
+      .rows li,
+      .stack-list li { grid-template-columns: 1fr; gap: 4px; }
       .steps { grid-template-columns: 1fr; }
       .close { flex-direction: column; align-items: flex-start; }
     }
@@ -451,16 +466,40 @@
         <h2 id="stack-title">技术栈</h2>
         <span class="idx">04</span>
       </div>
-      <ul class="stack">
-        <li>前端</li>
-        <li>后端</li>
-        <li>Java</li>
-        <li>Go</li>
-        <li>Python</li>
-        <li>PHP</li>
-        <li>C#</li>
+      <p class="stack-lead">按系统里正在跑的部分来写，不按语言名贴标签。下面是常见会接到的形态。框架版本、数据库和部署方式在审计里核对，对不上会在报价前说明。</p>
+      <ul class="stack-list">
+        <li>
+          <strong>Web 前端</strong>
+          <span class="tech">Vue、React，以及 jQuery、模板页和旧管理后台</span>
+          <p>改页面、修交互，对接系统里已经存在的接口。</p>
+        </li>
+        <li>
+          <strong>Java</strong>
+          <span class="tech">Spring、Spring Boot，以及更早的 Java Web</span>
+          <p>业务接口、定时任务，以及仍在线上的系统。</p>
+        </li>
+        <li>
+          <strong>Go</strong>
+          <span class="tech">现有的 HTTP 服务和内部工具</span>
+          <p>修接口、补小功能，处理发布和运行问题。</p>
+        </li>
+        <li>
+          <strong>PHP</strong>
+          <span class="tech">Laravel、ThinkPHP，以及没有框架的旧站</span>
+          <p>网站、业务后台，和已经在用的接口。</p>
+        </li>
+        <li>
+          <strong>C#</strong>
+          <span class="tech">.NET、ASP.NET，包括仍在承担业务的旧项目</span>
+          <p>后台、业务系统和已有接口。</p>
+        </li>
+        <li>
+          <strong>Python</strong>
+          <span class="tech">项目里已经在跑的爬虫、脚本和数据任务</span>
+          <p>修采集、补任务，处理跑失败的数据作业。</p>
+        </li>
       </ul>
-      <p class="fine">Python 包含项目里已经在跑的爬虫和数据任务。审计时确认这个仓库能不能接，不合适会在报价前说明。</p>
+      <p class="fine">数据库、Nginx、Docker 和现有的发布方式，会在审计里跟对应系统一起看，不另算成一项独立服务。</p>
     </section>
 
     <div class="wrap">
