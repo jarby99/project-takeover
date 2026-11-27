@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>接手现有项目，负责维护和继续开发</title>
+  <meta name="description" content="面向已有产品的小团队。先做代码审计，再报价。修 bug、做小功能、值班响应，按月维护或按需求单。国内海外都接，中文沟通。">
+  <meta property="og:title" content="接手现有项目，负责维护和继续开发">
+  <meta property="og:description" content="先做代码审计，再报价。修 bug、小功能、值班响应。按月或按单。中文优先，国内海外都接。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jarby99.github.io/project-takeover/">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="canonical" href="https://jarby99.github.io/project-takeover/">
+  <meta name="theme-color" content="#f3efe6">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%239f2d1b'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' fill='white' font-family='sans-serif'%3E接%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --paper: #f3efe6;
+      --paper-2: #e7e1d4;
+      --ink: #1c1915;
+      --muted: #5c564c;
+      --line: #d4cdbf;
+      --seal: #9f2d1b;
+      --seal-deep: #7d2214;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    body::before {
+      content: "";
+      display: block;
+      height: 7px;
+      background: var(--seal);
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0 8px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .seal {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      background: var(--seal);
+      color: #fff8f4;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .top a.handle {
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+    }
+
+    .hero { padding: 42px 0 28px; }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--seal);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 11em;
+      font-size: clamp(36px, 5.4vw, 68px);
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      max-width: 38em;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px 28px;
+      margin-top: 28px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      background: var(--ink);
+      color: #f6f1e8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .cta:hover { background: var(--seal-deep); }
+
+    .cta-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 8px 0 0;
+    }
+
+    section { padding: 48px 0; }
+
+    .block-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .block-head h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .idx {
+      font-family: Consolas, "Cascadia Mono", "Sarasa Mono SC", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .fits {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--ink);
+    }
+
+    .fits li {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 8px;
+      padding: 20px 22px 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fits li:nth-child(odd) { padding-right: 28px; }
+
+    .fits li:nth-child(even) {
+      padding-left: 28px;
+      border-left: 1px solid var(--line);
+    }
+
+    .fits span {
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 13px;
+      color: var(--seal);
+      padding-top: 4px;
+    }
+
+    .fits p { margin: 0; }
+
+    .rows { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
+
+    .rows li {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rows strong { font-weight: 700; }
+
+    .rows p { margin: 0; color: var(--muted); }
+
+    .steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 48px;
+    }
+
+    .steps li {
+      padding-top: 14px;
+      border-top: 2px solid var(--ink);
+    }
+
+    .steps span {
+      display: block;
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 12px;
+      color: var(--seal);
+      margin-bottom: 8px;
+    }
+
+    .steps p {
+      margin: 0;
+      max-width: 24em;
+      font-size: 16px;
+      text-wrap: pretty;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .stack li {
+      min-width: 92px;
+      padding: 12px 14px;
+      background: var(--paper-2);
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .fine {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .en {
+      padding: 22px 0 8px;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 46em;
+    }
+
+    .close {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      padding: 12px 0 64px;
+    }
+
+    .close h2 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 3vw, 36px);
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .close p { margin: 0; color: var(--muted); }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 0 28px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    footer a { color: var(--ink); }
+
+    .sticky {
+      display: none;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--seal);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 800px) {
+      .fits { grid-template-columns: 1fr; }
+      .fits li,
+      .fits li:nth-child(odd),
+      .fits li:nth-child(even) {
+        padding: 16px 0;
+        border-left: 0;
+      }
+      .rows li { grid-template-columns: 1fr; gap: 4px; }
+      .steps { grid-template-columns: 1fr; }
+      .close { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(var(--max), calc(100% - 28px)); }
+      h1 { font-size: 34px; }
+      .lead { font-size: 16px; }
+      .steps { grid-template-columns: 1fr; }
+      .top a.handle { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .sticky {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(243, 239, 230, 0.94);
+        border-top: 1px solid var(--line);
+      }
+      .sticky .cta { width: 100%; }
+      body { padding-bottom: 76px; }
+      footer { margin-bottom: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap top">
+    <a class="brand" href="#top">
+      <span class="seal" aria-hidden="true">接</span>
+      项目接手
+    </a>
+    <a class="handle" href="https://t.me/gatheraround01">@gatheraround01</a>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <p class="kicker">中文优先 · 国内与海外小团队</p>
+      <h1>接手现有项目，<br>负责维护和继续开发。</h1>
+      <p class="lead">面向已有产品的小团队。先做代码审计，再报价。之后修 bug、做小功能、值班响应，按月维护或按需求单结算。国内、海外团队都接，中文沟通。</p>
+      <div class="hero-actions">
+        <a class="cta" href="https://t.me/gatheraround01?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%83%B3%E5%92%A8%E8%AF%A2%E7%8E%B0%E6%9C%89%E9%A1%B9%E7%9B%AE%E6%8E%A5%E6%89%8B%E3%80%82%0A%E4%BA%A7%E5%93%81%EF%BC%9A%0A%E6%8A%80%E6%9C%AF%E6%A0%88%EF%BC%9A%0A%E7%8E%B0%E5%9C%A8%E6%9C%80%E6%80%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%0A%E5%B8%8C%E6%9C%9B%E6%8C%89%E6%9C%88%E8%BF%98%E6%98%AF%E6%8C%89%E5%8D%95%EF%BC%9A">Telegram 咨询</a>
+        <p class="cta-note">出书面报价之前，不改代码。</p>
+      </div>
+    </div>
+
+    <div class="wrap"><hr class="rule"></div>
+
+    <section class="wrap" aria-labelledby="fit-title">
+      <div class="block-head">
+        <h2 id="fit-title">适合这些情况</h2>
+        <span class="idx">01</span>
+      </div>
+      <ol class="fits">
+        <li><span>01</span><p>产品已经在线上，团队大约 2–15 人</p></li>
+        <li><span>02</span><p>原开发离开，或忙于新功能、顾不上维护</p></li>
+        <li><span>03</span><p>需要一个人接手现有仓库，而不是从零重做</p></li>
+        <li><span>04</span><p>国内团队，或人在海外、习惯中文沟通的团队</p></li>
+      </ol>
+    </section>
+
+    <section class="wrap" aria-labelledby="service-title">
+      <div class="block-head">
+        <h2 id="service-title">服务</h2>
+        <span class="idx">02</span>
+      </div>
+      <ul class="rows">
+        <li>
+          <strong>代码审计</strong>
+          <p>只读查看仓库、部署和当前风险，给出未来 30 天建议。审计结束后出书面报价。</p>
+        </li>
+        <li>
+          <strong>修 bug</strong>
+          <p>线上问题、回归、对接故障。</p>
+        </li>
+        <li>
+          <strong>小功能</strong>
+          <p>在现有架构上加，不借机重写系统。</p>
+        </li>
+        <li>
+          <strong>值班响应</strong>
+          <p>在约定时间内处理故障。时段和范围写进月度合同。</p>
+        </li>
+        <li>
+          <strong>按月维护</strong>
+          <p>固定每月小时数，用来修 bug、做小需求和值班。也可以审计之后按单报价。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap" aria-labelledby="process-title">
+      <div class="block-head">
+        <h2 id="process-title">合作过程</h2>
+        <span class="idx">03</span>
+      </div>
+      <ol class="steps">
+        <li>
+          <span>01</span>
+          <p>发来产品地址、技术栈和现在最急的问题。仓库给只读权限即可。</p>
+        </li>
+        <li>
+          <span>02</span>
+          <p>做一次短审计。只读，不改代码。</p>
+        </li>
+        <li>
+          <span>03</span>
+          <p>书面报价：按月维护，或按需求单。</p>
+        </li>
+        <li>
+          <span>04</span>
+          <p>确认后开工。响应时间写在报价单里。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap" aria-labelledby="stack-title">
+      <div class="block-head">
+        <h2 id="stack-title">技术栈</h2>
+        <span class="idx">04</span>
+      </div>
+      <ul class="stack">
+        <li>前端</li>
+        <li>后端</li>
+        <li>Java</li>
+        <li>Go</li>
+        <li>Python</li>
+        <li>PHP</li>
+        <li>C#</li>
+      </ul>
+      <p class="fine">Python 包含项目里已经在跑的爬虫和数据任务。审计时确认这个仓库能不能接，不合适会在报价前说明。</p>
+    </section>
+
+    <div class="wrap">
+      <p class="en">English: takeover for an existing product. Code audit first, then bug fixes, small features, and incident response. Monthly retainer or per ticket. Java, Go, Python, PHP, C#, frontend and backend. Chinese preferred. Message @gatheraround01.</p>
+    </div>
+
+    <div class="wrap close">
+      <div>
+        <h2>先审计，再决定按月还是按单。</h2>
+        <p>仓库交给一个固定联系人。国内、海外都可以，中文沟通。</p>
+      </div>
+      <a class="cta" href="https://t.me/gatheraround01?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%83%B3%E5%92%A8%E8%AF%A2%E7%8E%B0%E6%9C%89%E9%A1%B9%E7%9B%AE%E6%8E%A5%E6%89%8B%E3%80%82%0A%E4%BA%A7%E5%93%81%EF%BC%9A%0A%E6%8A%80%E6%9C%AF%E6%A0%88%EF%BC%9A%0A%E7%8E%B0%E5%9C%A8%E6%9C%80%E6%80%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%0A%E5%B8%8C%E6%9C%9B%E6%8C%89%E6%9C%88%E8%BF%98%E6%98%AF%E6%8C%89%E5%8D%95%EF%BC%9A">打开 Telegram</a>
+    </div>
+  </main>
+
+  <footer class="wrap">
+    <span>远程协作 · 中文优先</span>
+    <a href="https://t.me/gatheraround01">t.me/gatheraround01</a>
+  </footer>
+
+  <div class="sticky">
+    <a class="cta" href="https://t.me/gatheraround01?text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%83%B3%E5%92%A8%E8%AF%A2%E7%8E%B0%E6%9C%89%E9%A1%B9%E7%9B%AE%E6%8E%A5%E6%89%8B%E3%80%82%0A%E4%BA%A7%E5%93%81%EF%BC%9A%0A%E6%8A%80%E6%9C%AF%E6%A0%88%EF%BC%9A%0A%E7%8E%B0%E5%9C%A8%E6%9C%80%E6%80%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%0A%E5%B8%8C%E6%9C%9B%E6%8C%89%E6%9C%88%E8%BF%98%E6%98%AF%E6%8C%89%E5%8D%95%EF%BC%9A">Telegram 咨询</a>
+  </div>
+</body>
+</html>
